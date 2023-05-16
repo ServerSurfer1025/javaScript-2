@@ -1,29 +1,59 @@
-import { calculateCircumference, calculateArea } from "./circleCalculator.js";
+import {
+  calculateCircumference,
+  calculateArea,
+  calculateSphereVolume,
+} from "./circleCalculator.js";
 import { convertToNumber } from "./validation.js";
+import { outputToElement } from "./display.js";
 
-document.querySelector("#submitButton").onclick = submitFunction;
-document.querySelector("#submitAreaButton").onclick = submitAreaFunction;
+document.querySelector("#submitButton").addEventListener(
+  "click",
+  function () {
+    submitFunction("circumference");
+  },
+  false
+);
+document.querySelector("#submitButtonArea").addEventListener(
+  "click",
+  function () {
+    submitFunction("area");
+  },
+  false
+);
+document.querySelector("#submitButtonVolume").addEventListener(
+  "click",
+  function () {
+    submitFunction("volume");
+  },
+  false
+);
 
-function submitFunction() {
-  let userRadius = convertToNumber(document.getElementById("radius").value);
-  let outputElement = document.getElementById("output");
-  if (userRadius) {
-    let circumference = calculateCircumference(userRadius);
-    outputElement.innerHTML = `The circumference is ${circumference}!`;
-  } else {
-    outputElement.innerHTML = "please enter a valid number";
+function submitFunction(calculationToMake) {
+  let outputId = "output",
+    inputId = "radius";
+  if (calculationToMake === "area") {
+    outputId += "Area";
+    inputId += "Area";
+  } else if (calculationToMake === "volume") {
+    outputId += "Volume";
+    inputId += "Volume";
   }
-}
-
-function submitAreaFunction() {
-  let userRadius = convertToNumber(
-    document.getElementById("radiusForArea").value
-  );
-  let outputElement = document.getElementById("output");
-  if (userRadius) {
-    let area = calculateArea(userRadius);
-    outputElement.innerHTML = `The area is ${area}!`;
+  let userRadius = convertToNumber(document.getElementById(inputId).value);
+  if (!userRadius) {
+    outputToElement(outputId, "please enter a valid number", "red");
   } else {
-    outputElement.innerHTML = "please enter a valid number";
+    if (calculationToMake === "area") {
+      outputToElement(outputId, `the area is ${calculateArea(userRadius)}!`);
+    } else if (calculationToMake === "volume") {
+      outputToElement(
+        outputId,
+        `the area is ${calculateSphereVolume(userRadius)}!`
+      );
+    } else {
+      outputToElement(
+        outputId,
+        `the circumference is ${calculateCircumference(userRadius)}!`
+      );
+    }
   }
 }

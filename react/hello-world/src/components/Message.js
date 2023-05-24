@@ -1,6 +1,6 @@
 import React from "react";
 import { Component } from "react";
-
+//changing states
 class Message extends Component {
   constructor() {
     super();

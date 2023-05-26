@@ -7,6 +7,10 @@ import Counter from "./components/Counter";
 import ClassClick from "./components/ClassClick";
 import FunctionClick from "./components/FunctionClick";
 import EventBind from "./components/EventBind";
+import ParentComponent from "./components/ParentComponent";
+import NameList from "./components/NameList";
+import PersonList from "./components/PersonList";
+import FragmentDemo from "./components/FragmentDemo";
 
 function App() {
   return (
@@ -20,11 +24,15 @@ function App() {
       <Welcome name="Terrian" nickname="TJ" />
       <Welcome2 name="Valerie" nickname="Althea" />
   <Welcome3 /> */}
-      <Message />
+      {/*<Message />
       <Counter />
       <FunctionClick />
       <ClassClick />
-      <EventBind />
+<EventBind />*/}
+      <ParentComponent />
+      <NameList />
+      <PersonList />
+      <FragmentDemo />
     </div>
   );
 }
